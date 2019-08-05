@@ -17,6 +17,11 @@ function reducer(state, action){
         count: state.count - 1
       }
     }
+    case "reset": {
+      return {
+        count: state.count = 0
+      }
+    }
     default:
       return initialState
   }
@@ -31,8 +36,9 @@ export default function App() {
     <div>
         count: {state.count}
         {/* Hello, {value.username} {value.lastName} */}
-        <button className="border p-1" onClick={() => dispatch({ type: "increment" })}>Increment</button>
-        <button className="border p-1" onClick={() => dispatch({ type: "decrement" })}>Decrement</button>
+        <button className="border m-1 p-1" onClick={() => dispatch({ type: "increment" })}>Increment</button>
+        <button className="border m-1 p-1" onClick={() => dispatch({ type: "decrement" })}>Decrement</button>
+        <button className="border m-1 p-1" onClick={() => dispatch({ type: "reset" })}>Reset</button>
     </div>
   );
 }
