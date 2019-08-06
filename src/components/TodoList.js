@@ -4,7 +4,7 @@ import TodosContext from '../context';
 export default function TodoList() {
   const {state, dispatch} = useContext(TodosContext);
 
-  const title = state.todos.lenght > 0 ? `${state.todos.lenght} Todos` : "Relax, nothing to do";
+  const title = state.todos.length > 0 ? `${state.todos.length} Todos` : "Relax, nothing to do";
 
   return (
     <div className="container mx-auto max-w-md text-center font-mono">
@@ -24,7 +24,9 @@ export default function TodoList() {
                 className="h-6"
                  />
               </button>
-              <button>
+              <button
+              onClick={() => dispatch({ type: 'REMOVE', payload: todo })}
+              >
                 <img
                 src="https://icon.now.sh/delete/8b0000"
                 alt="Delete icon"
