@@ -15,7 +15,12 @@ export default function TodoList() {
         {state.todos.map(todo => (
           <li key={todo.id}>
               <span
-              onDoubleClick={() => dispatch({ type: 'TOGGLE_TODO', payload: todo })}
+              onDoubleClick={async () => {
+                const response = await axios.patch(`https://hooks-api-oevov2wrn.now.sh/todos/${todo.id}`, {
+                  complete: !todo.complete
+                })
+                dispatch({ type: 'TOGGLE_TODO', payload: response.data })
+            }}
               className={`flex-1 ml-12 cursor-pointer ${todo.complete && "line-through text-grey-darkest"}`}>{todo.text}
               </span>
               <button onClick={() => dispatch({ type: "SET_CURRENT_TODO", payload: todo })}>
