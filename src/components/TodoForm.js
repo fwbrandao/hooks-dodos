@@ -16,7 +16,10 @@ useEffect(() => {
 const handleSubmit = async event => {
   event.preventDefault();
   if(currentTodo.text) {
-    dispatch({ tyoe: "UPDATE_TODO", payload: todo })
+    const response = await axios.patch(`https://hooks-api-oevov2wrn.now.sh/todos/${currentTodo.id}`, {
+      text: todo
+    })
+    dispatch({ tyoe: "UPDATE_TODO", payload: response.data })
   } else {
     const response = await axios.post("https://hooks-api-oevov2wrn.now.sh/todos", {
       id: uuidv4(),
